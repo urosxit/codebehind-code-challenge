@@ -3,7 +3,6 @@ const groups = require("./groups.json");
 function simulateMatch(team1, team2) {
   let rankDifference = team2.FIBARanking - team1.FIBARanking;
 
-  // Poboljšavamo rezultat tima sa boljim rangom
   if (rankDifference < 0) {
     rankDifference = Math.abs(rankDifference);
   }
@@ -34,7 +33,6 @@ function playGroupMatches(group) {
       const team2 = group[j];
       const { team1Points, team2Points } = simulateMatch(team1, team2);
 
-      // Update rezultata i bodova za timove
       standings[team1.Team].scored += team1Points;
       standings[team1.Team].conceded += team2Points;
       standings[team2.Team].scored += team2Points;
@@ -80,7 +78,6 @@ function rankTeamsInGroup(standings) {
 function printResults(groupResults, groupStandings) {
   console.log("Grupna faza - Rezultati:");
 
-  // Ispisujemo rezultate po grupama
   Object.keys(groupResults).forEach((groupName) => {
     console.log(`Grupa ${groupName}:`);
     groupResults[groupName].forEach((match) => {
@@ -88,7 +85,6 @@ function printResults(groupResults, groupStandings) {
     });
   });
 
-  // Ispisujemo konačne rang liste
   console.log("\nKonačan plasman u grupama:");
   Object.keys(groupStandings).forEach((groupName) => {
     console.log(`Grupa ${groupName}:`);
